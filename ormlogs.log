@@ -1,0 +1,7 @@
+[2021-02-19T13:32:47.743Z][QUERY]: SELECT * FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = 'users' AND `TABLE_NAME` = 'migrations'
+[2021-02-19T13:32:47.749Z][QUERY]: CREATE TABLE `users`.`migrations` (`id` int NOT NULL AUTO_INCREMENT, `timestamp` bigint NOT NULL, `name` varchar(255) NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB
+[2021-02-19T13:32:47.791Z][QUERY]: SELECT * FROM `users`.`migrations` `migrations`  ORDER BY `id` DESC
+[2021-02-19T13:32:47.793Z]No migrations are pending
+[2021-02-19T13:41:41.627Z][QUERY]: SELECT * FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = 'users' AND `TABLE_NAME` = 'migrations'
+[2021-02-19T13:41:41.634Z][QUERY]: SELECT * FROM `users`.`migrations` `migrations`  ORDER BY `id` DESC
+[2021-02-19T13:41:41.636Z]No migrations are pending
