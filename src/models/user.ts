@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Unique, Column, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm'
-import { Length, isNotEmpty, IsNotEmpty } from 'class-validator'
+import { Length, IsNotEmpty } from 'class-validator'
 import * as bcrypt from 'bcryptjs'
 
 import { Post } from './post'

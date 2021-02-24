@@ -1,7 +1,7 @@
 import { getRepository } from 'typeorm'
 import { Post } from '../models/post'
 
-export interface IPostPayload {
+export interface IPostPayload { //Интерфейс в отдельную папку
     title: string
     content: string
     userId: number

@@ -2,6 +2,7 @@ import { join } from 'path'
 // const join = require('path')
 import { ConnectionOptions } from 'typeorm'
 // const ConnectionOptions = require('typeorm')
+import { UploadModel } from './src/models/upload'
 
 
 const config = {
@@ -18,10 +19,9 @@ const connectionOptions: ConnectionOptions = {
     username: config.user || 'main',
     password: config.password,
     database: config.database,
-    // entities: [
-    //   Country,
-    //   Province
-    // ],
+    entities: [
+      UploadModel
+    ],
     // We are using migrations, synchronize should be set to false.
     synchronize: false,
     dropSchema: false,

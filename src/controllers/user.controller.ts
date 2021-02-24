@@ -6,7 +6,6 @@ import { User } from '../models'
 import { getRepository } from 'typeorm'
 
 
-
 class UserController {
 
 static listAll = async (req: Request, res: Response) => {
@@ -28,6 +27,13 @@ static getOneById = async (req: Request, res: Response) => {
             select: ['id', 'email', 'name', 'role']
         })
         res.send(user)
+
+        //Validation
+        const err = await validate(user)
+        if (err.length > 0) {
+            res.status(400).send(err)
+            return
+        }
     } catch(e) {
         res.status(404).send('User not found')
     }
@@ -43,8 +49,7 @@ static newUser = async(req: Request, res: Response) => {
 
     const err = await validate(user)
     if(err.length > 0) {
-        res.status(400).send(err)
-        return
+        return res.status(400).send(err)        
     }
     
     //Hash password
@@ -54,10 +59,9 @@ static newUser = async(req: Request, res: Response) => {
     const userRepository = getRepository(User)
     try {
         await userRepository.save(user)
-    } catch (e) {
-        console.log(e)
-        res.status(409).send('Email already exist')
-        return
+    } catch (err) {
+        console.log(err) 
+        return res.status(409).send('Email already exist')               
     }
     res.status(201).send('User created')
 }
@@ -74,27 +78,28 @@ static editUser = async (req: Request, res: Response) => {
     try {
         user = await userRepository.findOneOrFail(id)
     } catch (e) {
-        res.status(404).send('User not found')
-        return        
+        console.log(e)
+        return res.status(404).send('User not found')               
     }
 
     user.email = email
     user.name = name
     user.role = role
+
+    //Validation
     const err = await validate(user)
     if (err.length > 0) {
         res.status(400).send(err)
         return
     }
     try {
-        await userRepository.save(user);
+        await userRepository.save(user)
     } catch (e) {
-        res.status(409).send("username already in use");
-        return;
-    }
-    //After all send a 204 (no content, but accepted) response
-    
-    res.status(204).send()    
+        console.log(e)
+        return res.status(409).send('Username already in use')
+        
+    }    
+    res.status(204).send('Data has been edited')
 }
 
 static deleteUser = async (req: Request, res: Response) => {
@@ -108,9 +113,17 @@ static deleteUser = async (req: Request, res: Response) => {
         res.status(404).send('User not found')
         return
     }
+
+    //Validation
+    const err = await validate(user)
+    if (err.length > 0) {
+        res.status(400).send(err)
+        return
+    }
+
     userRepository.delete(id)
 
-    res.status(204).send()
+    res.status(204).send('User has been deleted')
 }
 }
 

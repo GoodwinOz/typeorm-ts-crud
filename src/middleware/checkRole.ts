@@ -10,11 +10,11 @@ export const checkRole = (roles: Array<string>) => {
 
         //Get role from DB
         const userRepository = getRepository(User)
-        let user = {} as User //????
+        let user: User //????
         try {
             user = await userRepository.findOneOrFail(id)
-        } catch (id) {
-            res.status(401).send()
+        } catch (err) {
+            return res.status(401).send(err)
         }
 
         if(roles.indexOf(user.role) > 1) next()
