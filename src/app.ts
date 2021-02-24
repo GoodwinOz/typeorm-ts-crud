@@ -8,9 +8,6 @@ import { createConnection } from 'typeorm'
 
 import router from './routes'
 import dbConfig from './config/database'
-// import cors from 'cors' 
-// import * as bodyParser from 'body-parser'
-// import config from './config/database'
 
 
 dotenv.config()

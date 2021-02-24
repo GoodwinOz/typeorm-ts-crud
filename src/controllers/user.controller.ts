@@ -1,9 +1,7 @@
-// import { Get, Route, Post, Tags, Body, Path } from 'tsoa'
-// import { getUsers, getUser, createUser, IUserPayload } from '../repositories/user.repository'
 import { Request, Response } from 'express'
+import { getRepository } from 'typeorm'
 import { validate } from 'class-validator'
 import { User } from '../models'
-import { getRepository } from 'typeorm'
 
 
 class UserController {
@@ -129,27 +127,3 @@ static deleteUser = async (req: Request, res: Response) => {
 
 
 export default UserController
-
-
-
-
-
-
-// @Route('users')
-// @Tags('User')
-// export default class UserContorller {
-//     @Get('/')
-//     public async getUsers(): Promise<Array<User>> {
-//         return getUsers()
-//     }
-
-//     @Post('/')
-//     public async createUser(@Body() body: IUserPayload): Promise<User> {
-//         return createUser(body)
-//     }
-
-//     @Get('/:id')
-//     public async getUser(@Path() id: string): Promise<User | null> {
-//         return getUser(Number(id))
-//     }
-// }

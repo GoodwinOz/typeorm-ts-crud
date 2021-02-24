@@ -83,7 +83,7 @@ static editUpload = async (req: Request, res: Response) => {
         return;
     }
     
-    res.status(204).send('Uplad data edited successfully')    
+    res.status(204).send('Upload data edited successfully')    
 }
 
 static deleteUpload = async (req: Request, res: Response) => {
